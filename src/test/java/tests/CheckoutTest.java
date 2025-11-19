@@ -34,6 +34,7 @@ public class CheckoutTest extends BaseTest {
 
         // Verify completion
         String message = complete.getSuccessMessage();
+        //Assert.assertEquals("hello", "world");   // force failure
         Assert.assertEquals(message, "Thank you for your order!");
     }
 }
