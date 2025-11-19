@@ -2,9 +2,12 @@ package tests;
 
 import base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 
+
+@Listeners(utils.ExtentTestNGListener.class)
 public class CheckoutTest extends BaseTest {
 
     @Test
