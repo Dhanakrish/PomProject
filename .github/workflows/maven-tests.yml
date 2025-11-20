@@ -26,6 +26,12 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
 
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: extent-report
+          path: reports/
+
       - name: Install Dependencies
         run: mvn -B install -DskipTests
       - name: Install Chrome
@@ -39,3 +45,7 @@ jobs:
 
       - name: Run Selenium Tests + TestNG Tests
         run: mvn clean test
+
+
+
+
