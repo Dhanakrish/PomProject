@@ -23,4 +23,8 @@ public class LoginPage {
         driver.findElement(password).sendKeys(pass);
         driver.findElement(loginBtn).click();
     }
+    public boolean isErrorVisible() {
+        return driver.findElement(By.cssSelector("[data-test='error']")).isDisplayed();
+    }
+
 }

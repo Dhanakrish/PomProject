@@ -23,7 +23,8 @@ public class LoginDataDrivenTest extends BaseTest {
         if (expected.equals("success")) {
             Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
         } else {
-            Assert.assertTrue(driver.getCurrentUrl().contains("error"));
+            Assert.assertTrue(loginPage.isErrorVisible()); // <-- correct check
         }
+
     }
 }
