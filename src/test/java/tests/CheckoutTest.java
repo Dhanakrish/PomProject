@@ -1,4 +1,4 @@
-package pages;
+package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class CheckoutInfoPage {
+public class CheckoutTest {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -17,7 +17,7 @@ public class CheckoutInfoPage {
     private By zip       = By.cssSelector("input[data-test='postalCode']");
     private By continueBtn = By.cssSelector("input[data-test='continue']");
 
-    public CheckoutInfoPage(WebDriver driver) {
+    public CheckoutTest(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
