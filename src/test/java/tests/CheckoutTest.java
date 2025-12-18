@@ -1,40 +1,35 @@
-package tests;
+package pages;
 
-import base.BaseTest;
-import org.testng.Assert;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
-import pages.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 
-@Listeners(utils.ExtentTestNGListener.class)
-public class CheckoutTest extends BaseTest {
+public class CheckoutInfoPage {
 
-    @Test
-    public void completeCheckoutTest() {
+    WebDriver driver;
+    WebDriverWait wait;
 
-        LoginPage login = new LoginPage(driver);
-        ProductsPage products = new ProductsPage(driver);
-        CartPage cart = new CartPage(driver);
-        CheckoutInfoPage info = new CheckoutInfoPage(driver);
-        CheckoutOverviewPage overview = new CheckoutOverviewPage(driver);
-        OrderCompletePage complete = new OrderCompletePage(driver);
+    private By firstName = By.cssSelector("input[data-test='firstName']");
+    private By lastName  = By.cssSelector("input[data-test='lastName']");
+    private By zip       = By.cssSelector("input[data-test='postalCode']");
+    private By continueBtn = By.cssSelector("input[data-test='continue']");
 
-        // Login
-        login.login("standard_user", "secret_sauce");
+    public CheckoutInfoPage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
-        // Add Items
-        products.addItemsToCart();
-        products.clickCart();
+    public void fillInformation(String fn, String ln, String zp) {
 
-        // Checkout Process
-        cart.clickCheckout();
-        info.fillInformation("John", "Doe", "560001");
-        overview.clickFinish();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstName));
 
-        // Verify completion
-        String message = complete.getSuccessMessage();
-        //Assert.assertEquals("hello", "world");   // force failure
-        Assert.assertEquals(message, "Thank you for your order!");
+        driver.findElement(firstName).sendKeys(fn);
+        driver.findElement(lastName).sendKeys(ln);
+        driver.findElement(zip).sendKeys(zp);
+
+        driver.findElement(continueBtn).click();
     }
 }
